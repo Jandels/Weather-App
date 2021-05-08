@@ -1,0 +1,88 @@
+body {
+  margin: 5%;
+  padding: 3%;
+  border: medium solid blue;
+  border-radius: 10px;
+  max-width: 1200px;
+}
+
+form {
+  padding: 0 0 5%;
+  margin: 10px 30% 10px 0%;
+}
+
+h1,
+h2,
+h3 {
+  padding: 10px;
+  font-family: "Varela Round", sans-serif;
+}
+
+canvas {
+  border: 1px solid #000000;
+  border-radius: 10px;
+}
+
+dl {
+  margin: 0;
+  padding: 10px;
+  font-family: "Varela Round", sans-serif;
+}
+
+dt {
+  font-size: larger;
+  padding: 10px;
+  text-align: center;
+}
+
+.mainHeading {
+  margin: 0;
+  padding: 0;
+  color: blue;
+}
+
+.miniHeading {
+  font-size: 80%;
+}
+
+.tempMetricChange {
+  font-weight: thin;
+  padding: 0 0 0 10px;
+  font-size: 30px;
+}
+
+.boldCelcius {
+  font-weight: bold;
+}
+
+.boldFarenh {
+  font-weight: bold;
+}
+
+.largeEmoji {
+  padding: 10%;
+  font-size: 800%;
+  margin: 0;
+  position: relative;
+  left: -35px;
+  font-family: var(--bs-font-sans-serif);
+}
+
+.text-muted {
+  text-transform: capitalize;
+}
+
+.forecastTitle {
+  margin: 2% 0 2% 0;
+}
+
+.fiveDayForecast {
+  border: solid blue;
+  border-radius: 10px;
+}
+.smallEmoji {
+  font-size: 200%;
+  text-align: left;
+  padding: 10px;
+  font-family: var(--bs-font-sans-serif);
+}
