@@ -86,3 +86,8 @@ dt {
   padding: 10px;
   font-family: var(--bs-font-sans-serif);
 }
+
+.openSourceLink {
+  margin: 5% 0;
+  font-family: "Varela Round", sans-serif;
+}
