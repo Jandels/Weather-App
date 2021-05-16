@@ -1,7 +1,6 @@
 ///To Dos
 
 //1 Create Farhenheight to Celcus interative conversion
-//2 Create Graph auto loading for temperature and precipication
 //3 Maybe consider importing a Google API instead to deal with the automated time responses
 //4
 

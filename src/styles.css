@@ -51,6 +51,11 @@ dt {
   font-size: 30px;
 }
 
+.tempMetricChange:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
 .boldCelcius {
   font-weight: bold;
 }
