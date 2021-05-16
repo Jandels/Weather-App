@@ -4,7 +4,8 @@
 //2 Import and API for a time response and 5 day forecast
 //3 Ensure the forecast loads along with emojis for the next 5 days
 //4 Sort out the "Server would like to know your location": Maybe add in a user experience button? Or learn to automatically load something
-//4 Do final changes on CSS code to make the design look nice
+//5 Issue with the automated detecting of location - cannot use 5 day weather forecast with the co-ordinates.
+//6 Do final changes on CSS code to make the design look nice
 
 //////////////////////Change Temperature Metric /////////////////////////
 function metricTempChange() {
@@ -35,20 +36,30 @@ function retrieveWeatherViaCoords(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longditude}&units=metric&appid=${apiKey}`;
 
   axios.get(apiUrl).then(displayWeatherTimeConditions);
+  let apiUrlFiveDayForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longditude}&appid=${apiKey}`;
+  axios.get(apiUrlFiveDayForecast).then(testworking);
 }
 
 //Option 2, User Interaction and search
 function citySearchFunc(event) {
   event.preventDefault();
+  console.log(event);
   let cityInput = document.querySelector("#city-input");
   let units = "metric";
   let apiKey = "692e81252347f5426b1d20da827a7848";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(displayWeatherTimeConditions);
+  //Add in Five Day Forecast Weather APi
+  let apiUrlFiveDayForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${cityInput.value}&units=${units}&appid=${apiKey}`;
+  axios.get(apiUrlFiveDayForecast).then(testworking);
+}
+
+function testworking(response) {
+  console.log(response);
+  alert("Yep, Its working!");
 }
 
 function displayWeatherTimeConditions(response) {
-  console.log(response);
   //Applying API Data to refresh parts of page
   document.querySelector("#main-heading").innerHTML = response.data.name;
   document.querySelector("#currentTemp").innerHTML = `${Math.round(
@@ -65,7 +76,7 @@ function displayWeatherTimeConditions(response) {
 
   //Withdrawing Timezone info from Api and using it to refresh the time // Note simplified version, maybe consider importing google api to maintain
   let timezone = response.data.timezone / 3600;
-  console.log(`Timezone UTC change ${timezone}`); // how many hours to subtract off the UTC time
+  //console.log(`Timezone UTC change ${timezone}`); // how many hours to subtract off the UTC time
   document.querySelector(".currentDate").innerHTML = formatDate(
     new Date(),
     timezone
