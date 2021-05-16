@@ -5,25 +5,23 @@
 //4
 
 //////////////////////Change Temperature Metric /////////////////////////
-//Mute for now - we will revisit later
-// function metricTempChange() {
-//   let reading = document.querySelector(".tempMetricChange");
+function metricTempChange() {
+  let reading = document.querySelector(".tempMetricChange");
+  if (reading.innerHTML === "<sup><strong>°F</strong> | °C</sup>") {
+    let celciusToFarenh = document.querySelector(".tempMetricChange");
+    celciusToFarenh.innerHTML = "<sup><strong>°C</strong> | °F</sup>";
+    let changeToCelcius = document.querySelector(".minMaxTemp");
+    changeToCelcius.innerHTML = " C Temp";
+  } else {
+    let celciusToFarenh = document.querySelector(".tempMetricChange");
+    celciusToFarenh.innerHTML = "<sup><strong>°F</strong> | °C</sup>";
+    let changeToFarenh = document.querySelector(".minMaxTemp");
+    changeToFarenh.innerHTML = "F Temp";
+  }
+}
 
-//   if (reading.innerHTML === "<strong>°C</strong> | °F") {
-//     let celciusToFarenh = document.querySelector(".tempMetricChange");
-//     celciusToFarenh.innerHTML = "<strong>°F</strong> | °C";
-//     let changeToCelcius = document.querySelector(".minMaxTemp");
-//     changeToCelcius.innerHTML = " 36° / 52°";
-//   } else {
-//     let celciusToFarenh = document.querySelector(".tempMetricChange");
-//     celciusToFarenh.innerHTML = "<strong>°C</strong> | °F";
-//     let changeToFarenh = document.querySelector(".minMaxTemp");
-//     changeToFarenh.innerHTML = "°11 / °22";
-//   }
-// }
-
-// let tempChange = document.querySelector(".tempMetricChange");
-// tempChange.addEventListener("click", metricTempChange);
+let tempChange = document.querySelector("#tempMetricChange");
+tempChange.addEventListener("click", metricTempChange);
 
 //////////////Autoload Location and Display City in Search/////////////////////////////
 
