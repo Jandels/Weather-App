@@ -1,8 +1,10 @@
 ///To Dos
 
-//1 Create Farhenheight to Celcus interative conversion
-//3 Maybe consider importing a Google API instead to deal with the automated time responses
-//4
+//1 Create Farhenheight to Celcus interative conversion - consider doing additional research on how to turn the value into a number, maybe research how this was done
+//2 Import and API for a time response and 5 day forecast
+//3 Ensure the forecast loads along with emojis for the next 5 days
+//4 Sort out the "Server would like to know your location": Maybe add in a user experience button? Or learn to automatically load something
+//4 Do final changes on CSS code to make the design look nice
 
 //////////////////////Change Temperature Metric /////////////////////////
 function metricTempChange() {
@@ -11,8 +13,6 @@ function metricTempChange() {
     let celciusToFarenh = document.querySelector(".tempMetricChange");
     celciusToFarenh.innerHTML = "<sup><strong>°C</strong> | °F</sup>";
     let changeToCelcius = document.querySelector("#currentTemp");
-    let variablechangetoCelcius = parseInt(changeToCelcius);
-    alert(` Value is ${variablechangetoCelcius}`);
     changeToCelcius.innerHTML = "C Temp";
   } else {
     let celciusToFarenh = document.querySelector(".tempMetricChange");
@@ -40,7 +40,6 @@ function retrieveWeatherViaCoords(position) {
 //Option 2, User Interaction and search
 function citySearchFunc(event) {
   event.preventDefault();
-  console.log(input);
   let cityInput = document.querySelector("#city-input");
   let units = "metric";
   let apiKey = "692e81252347f5426b1d20da827a7848";
