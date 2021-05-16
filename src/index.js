@@ -34,6 +34,7 @@ function retrieveWeatherViaCoords(position) {
   let longditude = position.coords.longitude;
   let apiKey = "692e81252347f5426b1d20da827a7848";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longditude}&units=metric&appid=${apiKey}`;
+
   axios.get(apiUrl).then(displayWeatherTimeConditions);
 }
 
@@ -48,7 +49,6 @@ function citySearchFunc(event) {
 
 function displayWeatherTimeConditions(response) {
   console.log(response);
-
   //Applying API Data to refresh parts of page
   document.querySelector("#main-heading").innerHTML = response.data.name;
   document.querySelector("#currentTemp").innerHTML = `${Math.round(
@@ -63,7 +63,7 @@ function displayWeatherTimeConditions(response) {
   //Applying the settings for various Emojis
   let runEmoji = chooseLargeEmoji(response.data.weather[0].icon);
 
-  //Withdrawing Timezone info from Api and using it to refresh the time
+  //Withdrawing Timezone info from Api and using it to refresh the time // Note simplified version, maybe consider importing google api to maintain
   let timezone = response.data.timezone / 3600;
   console.log(`Timezone UTC change ${timezone}`); // how many hours to subtract off the UTC time
   document.querySelector(".currentDate").innerHTML = formatDate(
@@ -117,7 +117,6 @@ function formatAMPM(date, utcOffset) {
   let strTime = hours + ":" + minutes + " " + ampm;
   return strTime;
 }
-////////////////////////////////////////////////
 
 function formatDate(now, utcOffset) {
   //////////////////////////////Arrays Days and Months///////////////////////////////
