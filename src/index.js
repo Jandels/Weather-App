@@ -10,12 +10,14 @@ function metricTempChange() {
   if (reading.innerHTML === "<sup><strong>°F</strong> | °C</sup>") {
     let celciusToFarenh = document.querySelector(".tempMetricChange");
     celciusToFarenh.innerHTML = "<sup><strong>°C</strong> | °F</sup>";
-    let changeToCelcius = document.querySelector(".minMaxTemp");
-    changeToCelcius.innerHTML = " C Temp";
+    let changeToCelcius = document.querySelector("#currentTemp");
+    let variablechangetoCelcius = parseInt(changeToCelcius);
+    alert(` Value is ${variablechangetoCelcius}`);
+    changeToCelcius.innerHTML = "C Temp";
   } else {
     let celciusToFarenh = document.querySelector(".tempMetricChange");
     celciusToFarenh.innerHTML = "<sup><strong>°F</strong> | °C</sup>";
-    let changeToFarenh = document.querySelector(".minMaxTemp");
+    let changeToFarenh = document.querySelector("#currentTemp");
     changeToFarenh.innerHTML = "F Temp";
   }
 }
