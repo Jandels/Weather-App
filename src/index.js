@@ -40,9 +40,11 @@ function retrieveWeatherViaCoords(position) {
 //Option 2, User Interaction and search
 function citySearchFunc(event) {
   event.preventDefault();
+  console.log(input);
   let cityInput = document.querySelector("#city-input");
+  let units = "metric";
   let apiKey = "692e81252347f5426b1d20da827a7848";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&units=metric&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(displayWeatherTimeConditions);
 }
 
