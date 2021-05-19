@@ -85,6 +85,11 @@ dt {
   border: solid blue;
   border-radius: 10px;
 }
+
+.future-day-forecast {
+  padding: 10px;
+  font-family: "Varela Round", sans-serif;
+}
 .smallEmoji {
   font-size: 200%;
   text-align: left;

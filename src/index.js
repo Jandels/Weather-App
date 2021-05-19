@@ -43,8 +43,8 @@ function retrieveWeatherViaCoords(position) {
 //Option 2, User Interaction and search
 function citySearchFunc(event) {
   event.preventDefault();
-  console.log(event);
   let cityInput = document.querySelector("#city-input");
+  console.log(cityInput.value);
   let units = "metric";
   let apiKey = "692e81252347f5426b1d20da827a7848";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&units=${units}&appid=${apiKey}`;
@@ -52,14 +52,37 @@ function citySearchFunc(event) {
   //Add in Five Day Forecast Weather APi
   let apiUrlFiveDayForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${cityInput.value}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrlFiveDayForecast).then(testworking);
+  displayforecast();
 }
 
-function testworking(response) {
-  console.log(response);
-  alert("Yep, Its working!");
+function displayforecast() {
+  let forecastElement = document.querySelector("#future-day-forecast");
+
+  let days = ["Thurs", "Fri", "Sat", "Sun", "Mon", "Tues"];
+  let forecastHTML = `<div class = "row">`;
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<dl class="row">
+            <dt class="col-sm-8">
+              ${day} <br />
+              <small class="text-muted"
+                ><span class="weather-forecast-temp-min"> 12 °</span
+                ><span class="weather-forecast-temp-max">/ 22 °</span></small
+              >
+            </dt>
+            <dt class="col-sm-4 smallEmoji">☀</dt>
+            </dl>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
+
+function testworking(response) {}
 
 function displayWeatherTimeConditions(response) {
+  console.log(response);
   //Applying API Data to refresh parts of page
   document.querySelector("#main-heading").innerHTML = response.data.name;
   document.querySelector("#currentTemp").innerHTML = `${Math.round(
