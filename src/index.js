@@ -48,10 +48,6 @@ function citySearchFunc(event) {
   let apiKey = "692e81252347f5426b1d20da827a7848";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(displayWeatherTimeConditions);
-  //Add in Five Day Forecast Weather APi
-  let apiUrlFiveDayForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${cityInput.value}&units=${units}&appid=${apiKey}`;
-  axios.get(apiUrlFiveDayForecast).then(testworking);
-  displayforecast();
 }
 
 function displayforecast() {
