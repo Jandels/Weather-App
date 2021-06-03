@@ -69,7 +69,8 @@ dt {
   font-size: 800%;
   margin: 0;
   position: relative;
-  left: -35px;
+  left: -80px;
+  top: -20px;
   font-family: var(--bs-font-sans-serif);
 }
 
@@ -79,6 +80,7 @@ dt {
 
 .forecastTitle {
   margin: 2% 0 2% 0;
+  text-align: center;
 }
 
 .fiveDayForecast {
@@ -91,13 +93,40 @@ dt {
   font-family: "Varela Round", sans-serif;
 }
 .smallEmoji {
-  font-size: 200%;
+  font-size: 300%;
   text-align: left;
   padding: 10px;
   font-family: var(--bs-font-sans-serif);
 }
 
+.weather-forecast-temp-min {
+  opacity: 0.5;
+  color: blue;
+}
+
+.weather-forecast-temp-max {
+  opacity: 0.5;
+  color: red;
+}
+
 .openSourceLink {
   margin: 5% 0;
   font-family: "Varela Round", sans-serif;
+}
+
+.QOD {
+  color: blue;
+  font-family: "Varela Round", sans-serif;
+}
+
+.quote {
+  font-family: "Varela Round", sans-serif;
+}
+
+.container {
+  padding: 30px 0;
+}
+
+.openSourceLink {
+  padding: 40px 0 0 0;
 }

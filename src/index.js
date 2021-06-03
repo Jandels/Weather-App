@@ -1,13 +1,11 @@
 ///To Dos
 
 //1 Create Farhenheight to Celcus interative conversion - consider doing additional research on how to turn the value into a number, maybe research how this was done
-//2 Import and API for a time response and 5 day forecast
-//3 Ensure the forecast loads along with emojis for the next 5 days
 //4 Sort out the "Server would like to know your location": Maybe add in a user experience button? Or learn to automatically load something
-//5 Issue with the automated detecting of location - cannot use 5 day weather forecast with the co-ordinates.
 //6 Do final changes on CSS code to make the design look nice
+// If feeling confident - maybe add in a google API system for accurate time conversion
 
-//////////////////////Change Temperature Metric /////////////////////////
+//////////////////////////////////////////////Change Temperature Metric, Celcius to Fahrenheight /////////////////////////////////////////////////////
 function metricTempChange() {
   let reading = document.querySelector(".tempMetricChange");
   if (reading.innerHTML === "<sup><strong>°F</strong> | °C</sup>") {
@@ -26,9 +24,9 @@ function metricTempChange() {
 let tempChange = document.querySelector("#tempMetricChange");
 tempChange.addEventListener("click", metricTempChange);
 
-//////////////Autoload Location and Display City in Search/////////////////////////////
+//////////////////////////////////////////////////////////////////CALLING API FUNCTIONS//////////////////////////////////////////////////////////////
 
-//Option 1 Open Automated on page loading
+//Option 1 Open Automated on page loading via detect location
 function retrieveWeatherViaCoords(position) {
   let latitude = position.coords.latitude;
   let longditude = position.coords.longitude;
@@ -37,9 +35,10 @@ function retrieveWeatherViaCoords(position) {
 
   axios.get(apiUrl).then(displayWeatherTimeConditions);
 }
+navigator.geolocation.getCurrentPosition(retrieveWeatherViaCoords);
 
-//Option 2, User Interaction and search via forms
-function citySearchFunc(event) {
+//Option 2, User Interaction - user search via forms
+function retrieveWeatherViaCitySearchFunc(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#city-input");
   let units = "metric";
@@ -47,9 +46,21 @@ function citySearchFunc(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(displayWeatherTimeConditions);
 }
+let searchForms = document.querySelector("form");
+searchForms.addEventListener("submit", retrieveWeatherViaCitySearchFunc);
+
+// Call Five Day forecast API Via Initial API call above (Option 1 or Option 2)
+function retrieveFiveDayForecastViaAPI(coordinates) {
+  let units = "metric";
+  let apiKey = "692e81252347f5426b1d20da827a7848";
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${units}`;
+  axios.get(apiURL).then(displayforecast);
+}
+
+/////////////////////////////////////////////////////////////DISPLAY FORECAST FUNCTIONS///////////////////////////////////////////////////////////
 
 function displayWeatherTimeConditions(response) {
-  //Applying API Data to refresh parts of page
+  //Applying refresh parts of page with weather data
   document.querySelector("#main-heading").innerHTML = response.data.name;
   document.querySelector("#currentTemp").innerHTML = `${Math.round(
     response.data.main.temp
@@ -60,34 +71,25 @@ function displayWeatherTimeConditions(response) {
     response.data.wind.speed
   )} mph <br/ > Humidity: ${Math.round(response.data.main.humidity)} %`;
 
-  //Applying the settings for various Emojis
-  let runEmoji = displayEmoji(response.data.weather[0].icon);
+  //Choose Large Weather Emojji
+  document.querySelector("#largeEmoji").innerHTML = displayEmoji(
+    response.data.weather[0].icon
+  );
 
-  //Withdrawing Timezone info from Api and using it to refresh the time // Note simplified version, maybe consider importing google api to maintain
+  //Withdrawing Timezone info from Api and using it to refresh the time // Note simplified version, consider importing google api to maintain
   let timezone = response.data.timezone / 3600;
-  //console.log(`Timezone UTC change ${timezone}`); // how many hours to subtract off the UTC time
-  document.querySelector(".currentDate").innerHTML = formatDate(
+  document.querySelector("#currentDate").innerHTML = formatDate(
     new Date(),
     timezone
   );
 
   //Extract the Co-ordinates of the city input from the API and use to call the 5 day forecast
-  displayFiveDayForecastConditions(response.data.coord);
-}
-
-function displayFiveDayForecastConditions(coordinates) {
-  let units = "metric";
-  let apiKey = "692e81252347f5426b1d20da827a7848";
-  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${units}`;
-  axios.get(apiURL).then(displayforecast);
+  retrieveFiveDayForecastViaAPI(response.data.coord);
 }
 
 function displayforecast(response) {
-  console.log(response.data);
-
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#future-day-forecast");
-
   let forecastHTML = `<div class = "row">`;
 
   forecast.forEach(function (forecastDay, index) {
@@ -116,14 +118,6 @@ function displayforecast(response) {
   forecastElement.innerHTML = forecastHTML;
 }
 
-function formatDay(timestamp) {
-  let date = new Date(timestamp * 1000);
-  let day = date.getDay();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
-
-  return days[day];
-}
-
 function displayEmoji(icon) {
   if (icon === "01d" || icon === "01n") {
     return "☀";
@@ -148,13 +142,7 @@ function displayEmoji(icon) {
   }
 }
 
-//Automated loading of weather conditions via detect location
-navigator.geolocation.getCurrentPosition(retrieveWeatherViaCoords);
-
-let searchForms = document.querySelector("form");
-searchForms.addEventListener("submit", citySearchFunc);
-
-///////////////////////// TIME AND DATE FUNCTIONS////////////////////////////
+/////////////////////////////////////////////////////////////// TIME AND DATE FUNCTIONS////////////////////////////////////////////////////////////
 
 //////////////AMPM Function Credit: https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format"
 function formatAMPM(date, utcOffset) {
@@ -166,6 +154,14 @@ function formatAMPM(date, utcOffset) {
   minutes = minutes < 10 ? "0" + minutes : minutes;
   let strTime = hours + ":" + minutes + " " + ampm;
   return strTime;
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000); //UNIX timestamp, convert from seconds to milliseconds by *1000, function 'Date' then converts to physical date.
+  let day = date.getDay(); //Returns the number of an array
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+
+  return days[day];
 }
 
 function formatDate(now, utcOffset) {
@@ -208,4 +204,22 @@ function formatDate(now, utcOffset) {
   let utcminutes = now.getUTCMinutes();
 
   return ` ${formatAMPM(now, utcOffset)} <br /> ${day}, ${month} ${date}`;
+}
+
+/////////////////////////////////////////////////////////Quote of the Day API and Call////////////////////////////////
+////Copied from Codepen // https://codepen.io/deepakdk619/pen/eYJYmNL
+const api = "https://api.quotable.io/random";
+
+const quote = document.getElementById("quote");
+const author = document.getElementById("author");
+
+getQuote();
+
+function getQuote() {
+  fetch(api)
+    .then((res) => res.json())
+    .then((data) => {
+      quote.innerHTML = `"${data.content}"`;
+      author.innerHTML = `- ${data.author}`;
+    });
 }
