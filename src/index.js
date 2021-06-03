@@ -44,7 +44,6 @@ function retrieveWeatherViaCoords(position) {
 function citySearchFunc(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#city-input");
-  console.log(cityInput.value);
   let units = "metric";
   let apiKey = "692e81252347f5426b1d20da827a7848";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&units=${units}&appid=${apiKey}`;
@@ -82,7 +81,6 @@ function displayforecast() {
 function testworking(response) {}
 
 function displayWeatherTimeConditions(response) {
-  console.log(response);
   //Applying API Data to refresh parts of page
   document.querySelector("#main-heading").innerHTML = response.data.name;
   document.querySelector("#currentTemp").innerHTML = `${Math.round(
@@ -104,6 +102,16 @@ function displayWeatherTimeConditions(response) {
     new Date(),
     timezone
   );
+
+  //Extract the Co-ordinates of the city input from the API and use to call the 5 day forecast
+  displayFiveDayForecastConditions(response.data.coord);
+}
+
+function displayFiveDayForecastConditions(coordinates) {
+  let units = "metric";
+  let apiKey = "692e81252347f5426b1d20da827a7848";
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${units}`;
+  console.log(apiURL);
 }
 
 //Choses Visuals depending on Weather Input
