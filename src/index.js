@@ -82,28 +82,44 @@ function displayFiveDayForecastConditions(coordinates) {
   axios.get(apiURL).then(displayforecast);
 }
 
-function displayforecast() {
+function displayforecast(response) {
+  console.log(response.data);
+
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#future-day-forecast");
 
-  let days = ["Thurs", "Fri", "Sat", "Sun", "Mon", "Tues"];
   let forecastHTML = `<div class = "row">`;
 
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<dl class="row">
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6 && index > 0) {
+      forecastHTML =
+        forecastHTML +
+        `<dl class="row">
             <dt class="col-sm-8">
-              ${day} <br />
+              ${formatDay(forecastDay.dt)} <br />
               <small class="text-muted"
-                ><span class="weather-forecast-temp-min"> 12 °</span
-                ><span class="weather-forecast-temp-max">/ 22 °</span></small
+                ><span class="weather-forecast-temp-min"> ${Math.round(
+                  forecastDay.temp.min
+                )} °</span
+                ><span class="weather-forecast-temp-max">/ ${Math.round(
+                  forecastDay.temp.max
+                )} °</span></small
               >
             </dt>
-            <dt class="col-sm-4 smallEmoji">☀</dt>
+            <dt class="col-sm-4 smallEmoji">${forecastDay.weather[0].icon}</dt>
             </dl>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+
+  return days[day];
 }
 
 //Choses Visuals depending on Weather Input
