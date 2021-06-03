@@ -61,7 +61,7 @@ function displayWeatherTimeConditions(response) {
   )} mph <br/ > Humidity: ${Math.round(response.data.main.humidity)} %`;
 
   //Applying the settings for various Emojis
-  let runEmoji = chooseLargeEmoji(response.data.weather[0].icon);
+  let runEmoji = displayEmoji(response.data.weather[0].icon);
 
   //Withdrawing Timezone info from Api and using it to refresh the time // Note simplified version, maybe consider importing google api to maintain
   let timezone = response.data.timezone / 3600;
@@ -106,7 +106,9 @@ function displayforecast(response) {
                 )} °</span></small
               >
             </dt>
-            <dt class="col-sm-4 smallEmoji">${forecastDay.weather[0].icon}</dt>
+            <dt class="col-sm-4 smallEmoji">${displayEmoji(
+              forecastDay.weather[0].icon
+            )}</dt>
             </dl>`;
     }
   });
@@ -122,29 +124,27 @@ function formatDay(timestamp) {
   return days[day];
 }
 
-//Choses Visuals depending on Weather Input
-function chooseLargeEmoji(icon) {
-  let emoji = document.querySelector("#largeEmoji");
+function displayEmoji(icon) {
   if (icon === "01d" || icon === "01n") {
-    emoji.innerHTML = "☀";
+    return "☀";
   } else if (icon === "02d" || icon === "02n") {
-    emoji.innerHTML = "⛅";
+    return "⛅";
   } else if (icon === "03d" || icon === "03n") {
-    emoji.innerHTML = "☁";
+    return "☁";
   } else if (icon === "04d" || icon === "04n") {
-    emoji.innerHTML = "☁";
+    return "☁";
   } else if (icon === "09d" || icon === "09n") {
-    emoji.innerHTML = "🌧";
+    return "🌧";
   } else if (icon === "10d" || icon === "10n") {
-    emoji.innerHTML = "🌦";
+    return "🌦";
   } else if (icon === "11d" || icon === "11n") {
-    emoji.innerHTML = "⛈";
+    return "⛈";
   } else if (icon === "13d" || icon === "13n") {
-    emoji.innerHTML = "❄";
+    return "❄";
   } else if (icon === "50d" || icon === "50n") {
-    emoji.innerHTML = "🌫";
+    return "🌫";
   } else {
-    emoji.innerHTML = "Error - check Code";
+    return "Error - check Code";
   }
 }
 
