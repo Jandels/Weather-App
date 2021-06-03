@@ -36,11 +36,9 @@ function retrieveWeatherViaCoords(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longditude}&units=metric&appid=${apiKey}`;
 
   axios.get(apiUrl).then(displayWeatherTimeConditions);
-  let apiUrlFiveDayForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longditude}&appid=${apiKey}`;
-  axios.get(apiUrlFiveDayForecast).then(testworking);
 }
 
-//Option 2, User Interaction and search
+//Option 2, User Interaction and search via forms
 function citySearchFunc(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#city-input");
@@ -49,32 +47,6 @@ function citySearchFunc(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(displayWeatherTimeConditions);
 }
-
-function displayforecast() {
-  let forecastElement = document.querySelector("#future-day-forecast");
-
-  let days = ["Thurs", "Fri", "Sat", "Sun", "Mon", "Tues"];
-  let forecastHTML = `<div class = "row">`;
-
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<dl class="row">
-            <dt class="col-sm-8">
-              ${day} <br />
-              <small class="text-muted"
-                ><span class="weather-forecast-temp-min"> 12 °</span
-                ><span class="weather-forecast-temp-max">/ 22 °</span></small
-              >
-            </dt>
-            <dt class="col-sm-4 smallEmoji">☀</dt>
-            </dl>`;
-  });
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
-}
-
-function testworking(response) {}
 
 function displayWeatherTimeConditions(response) {
   //Applying API Data to refresh parts of page
@@ -107,7 +79,31 @@ function displayFiveDayForecastConditions(coordinates) {
   let units = "metric";
   let apiKey = "692e81252347f5426b1d20da827a7848";
   let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${units}`;
-  console.log(apiURL);
+  axios.get(apiURL).then(displayforecast);
+}
+
+function displayforecast() {
+  let forecastElement = document.querySelector("#future-day-forecast");
+
+  let days = ["Thurs", "Fri", "Sat", "Sun", "Mon", "Tues"];
+  let forecastHTML = `<div class = "row">`;
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<dl class="row">
+            <dt class="col-sm-8">
+              ${day} <br />
+              <small class="text-muted"
+                ><span class="weather-forecast-temp-min"> 12 °</span
+                ><span class="weather-forecast-temp-max">/ 22 °</span></small
+              >
+            </dt>
+            <dt class="col-sm-4 smallEmoji">☀</dt>
+            </dl>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 //Choses Visuals depending on Weather Input
