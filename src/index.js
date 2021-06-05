@@ -6,25 +6,6 @@
 // If feeling confident - maybe add in a google API system for accurate time conversion
 //Fix up the quote of the day
 
-//////////////////////////////////////////////Change Temperature Metric, Celcius to Fahrenheight /////////////////////////////////////////////////////
-function metricTempChange() {
-  let reading = document.querySelector(".tempMetricChange");
-  if (reading.innerHTML === "<sup><strong>°F</strong> | °C</sup>") {
-    let celciusToFarenh = document.querySelector(".tempMetricChange");
-    celciusToFarenh.innerHTML = "<sup><strong>°C</strong> | °F</sup>";
-    let changeToCelcius = document.querySelector("#currentTemp");
-    changeToCelcius.innerHTML = "C Temp";
-  } else {
-    let celciusToFarenh = document.querySelector(".tempMetricChange");
-    celciusToFarenh.innerHTML = "<sup><strong>°F</strong> | °C</sup>";
-    let changeToFarenh = document.querySelector("#currentTemp");
-    changeToFarenh.innerHTML = "F Temp";
-  }
-}
-
-let tempChange = document.querySelector("#tempMetricChange");
-tempChange.addEventListener("click", metricTempChange);
-
 //////////////////////////////////////////////////////////////////CALLING API FUNCTIONS//////////////////////////////////////////////////////////////
 
 //Option 1 Open Automated on page loading via detect location
@@ -33,7 +14,7 @@ function retrieveWeatherViaCoords(position) {
   let latitude = position.coords.latitude;
   let longditude = position.coords.longitude;
   let apiKey = "692e81252347f5426b1d20da827a7848";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longditude}&units=${metric}&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longditude}&units=${units}&appid=${apiKey}`;
 
   axios.get(apiUrl).then(displayWeatherTimeConditions);
 }
