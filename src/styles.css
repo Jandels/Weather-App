@@ -4,6 +4,7 @@ body {
   border: medium solid blue;
   border-radius: 10px;
   max-width: 1200px;
+  background-color: blueviolet;
 }
 
 form {

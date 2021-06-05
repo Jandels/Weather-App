@@ -45,7 +45,7 @@ function retrieveFiveDayForecastViaAPI(coordinates) {
 function displayWeatherTimeConditions(response) {
   //Applying refresh parts of page with weather data
   document.querySelector(
-    "#main-heading"
+    "#city-heading"
   ).innerHTML = `${response.data.name} </br>`;
   document.querySelector("#currentTemp").innerHTML = `${Math.round(
     response.data.main.temp
