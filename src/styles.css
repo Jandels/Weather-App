@@ -4,7 +4,6 @@ body {
   border: medium solid blue;
   border-radius: 10px;
   max-width: 1200px;
-  background-color: blueviolet;
 }
 
 form {
@@ -12,52 +11,17 @@ form {
   margin: 10px 30% 10px 0%;
 }
 
-h1,
-h2,
-h3 {
-  padding: 10px;
-  font-family: "Varela Round", sans-serif;
-}
-
-dl {
-  margin: 0;
-  padding: 10px;
-  font-family: "Varela Round", sans-serif;
-}
-
-dt {
-  font-size: larger;
-  padding: 10px;
-  text-align: center;
-}
-
-.mainHeading {
+/* Current Forecast  */
+.CityHeading {
   margin: 0;
   padding: 0;
   color: blue;
+  font-family: "Varela Round", sans-serif;
 }
 
 .miniHeading {
   font-size: 80%;
-}
-
-.tempMetricChange {
-  font-weight: thin;
-  padding: 0 0 0 10px;
-  font-size: 30px;
-}
-
-.tempMetricChange:hover {
-  text-decoration: underline;
-  color: blue;
-}
-
-.boldCelcius {
-  font-weight: bold;
-}
-
-.boldFarenh {
-  font-weight: bold;
+  font-family: "Varela Round", sans-serif;
 }
 
 .largeEmoji {
@@ -72,15 +36,20 @@ dt {
 
 .text-muted {
   text-transform: capitalize;
+  font-family: "Varela Round", sans-serif;
 }
 
+/*  */
+
+/* Five Day Forecast */
 .forecastTitle {
   margin: 2% 0 2% 0;
   text-align: center;
   color: blue;
+  font-family: "Varela Round", sans-serif;
 }
 
-.fiveDayForecast {
+.fiveDayForecastContainer {
   border: solid blue;
   border-radius: 10px;
 }
@@ -99,19 +68,44 @@ dt {
 .weather-forecast-temp-min {
   opacity: 0.5;
   color: blue;
+  font-family: "Varela Round", sans-serif;
 }
 
 .weather-forecast-temp-max {
   opacity: 0.5;
   color: red;
-}
-
-.openSourceLink {
-  margin: 5% 0;
   font-family: "Varela Round", sans-serif;
 }
 
-.QOD {
+/* Forecast Days Design */
+dl {
+  margin: 0;
+  padding: 5px;
+  font-family: "Varela Round", sans-serif;
+}
+dt {
+  font-size: larger;
+  text-align: center;
+}
+
+/*  */
+
+/* Quote of the day */
+
+.quoteofthedayrow {
+  padding-top: 70px;
+}
+
+.thoughtBubble {
+  padding: 10%;
+  font-size: 800%;
+  margin: 0;
+  position: relative;
+  right: 40px;
+  top: 20px;
+  font-family: var(--bs-font-sans-serif);
+}
+.QuoteOfTheDayTitle {
   color: blue;
   font-family: "Varela Round", sans-serif;
 }
@@ -120,10 +114,18 @@ dt {
   font-family: "Varela Round", sans-serif;
 }
 
+.auther {
+  font-family: "Varela Round", sans-serif;
+}
+
 .container-quote {
   padding: 30px 0;
 }
 
+/*  */
+
 .openSourceLink {
+  margin: 5% 0;
+  font-family: "Varela Round", sans-serif;
   padding: 40px 0 0 0;
 }
