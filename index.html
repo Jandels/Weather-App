@@ -19,10 +19,8 @@
   </head>
 
   <body>
-    <!-- SEARCH BAR -->
     <div class="container">
-      <!-- Main Row and Column -->
-
+      <!-- Search Bar -->
       <form>
         <div class="form-group">
           <input
@@ -33,66 +31,39 @@
           />
         </div>
       </form>
+
       <div class="row">
         <div class="col-7">
-          <!-- SubRow and Column 1 -->
+          <!-- Contains Current Weather, Description, Large Emoji, Quote of the Day,  -->
+
           <div class="row">
             <div class="col-8">
-              <!-- City and Key Information -->
+              <!-- Contains Current Weather, Description -->
               <h1>
-                <span class="mainHeading" id="main-heading">Main City</span>
-                <br />
-                <span class="currentDate miniHeading" id="currentDate"
-                  >Date
-                </span>
-                <br />
-                <span class="minMaxTemp miniHeading" id="currentTemp">
-                  Temperature
-                </span>
-
-                <span id="tempMetricChange" class="tempMetricChange">
-                  <sup>°C </sup>
-                </span>
+                <span class="mainHeading" id="main-heading"></span>
+                <span class="currentDate miniHeading" id="currentDate"> </span>
+                <span class="minMaxTemp miniHeading" id="currentTemp"> </span>
+                <span id="tempMetricChange" class="tempMetricChange"> </span>
               </h1>
 
               <h3>
-                <small class="text-muted" id="fullWeatherDescription"
-                  >Cloudy with a chance of rain
-                  <br />
-                  Humidity: 18%
-                  <br />
-                  Precipitation: 74%
-                  <br />
-                  Wind Speed: 15mph</small
-                >
+                <small class="text-muted" id="fullWeatherDescription"></small>
               </h3>
             </div>
 
+            <!-- Contains Large Emoji -->
             <div class="col-4">
-              <!-- Emoji -->
-              <h1 class="largeEmoji" id="largeEmoji">🌦</h1>
+              <h1 class="largeEmoji" id="largeEmoji"></h1>
             </div>
 
-            <div class="container col-11">
-              <div class="quote-box">
-                <hr />
-                <h2 class="QOD">🤔 Quote of the Day 🤔</h2>
-                <p class="quote" id="quote">"Quote goes here..."</p>
-                <small id="author">- Author</small>
-              </div>
-
-              <div class="openSourceLink">
-                <p>
-                  <a href="https://xenodochial-haibt-fd4a98.netlify.app/"
-                    >Open Source Code</a
-                  >
-                  by Jandels
-                </p>
-              </div>
+            <!-- Contains Quote of the day -->
+            <div class="container-quote col-12 quote-box">
+              <h2 class="QOD">🤔 Quote of the Day 🤔</h2>
+              <p class="quote" id="quote"></p>
+              <small id="author">- Author</small>
             </div>
           </div>
         </div>
-        <!--  Main Row and Column  -->
 
         <div class="col-5 fiveDayForecast">
           <!-- 5 Day Forecast -->
@@ -100,8 +71,17 @@
           <div class="future-day-forecast" id="future-day-forecast"></div>
         </div>
       </div>
-    </div>
 
+      <!-- Created by Jandels Link -->
+      <div class="openSourceLink">
+        <p>
+          <a href="https://xenodochial-haibt-fd4a98.netlify.app/"
+            >Open Source Code</a
+          >
+          by Jandels
+        </p>
+      </div>
+    </div>
     <script src="src/index.js"></script>
   </body>
 </html>

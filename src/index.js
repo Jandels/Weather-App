@@ -44,10 +44,12 @@ function retrieveFiveDayForecastViaAPI(coordinates) {
 
 function displayWeatherTimeConditions(response) {
   //Applying refresh parts of page with weather data
-  document.querySelector("#main-heading").innerHTML = response.data.name;
+  document.querySelector(
+    "#main-heading"
+  ).innerHTML = `${response.data.name} </br>`;
   document.querySelector("#currentTemp").innerHTML = `${Math.round(
     response.data.main.temp
-  )}`;
+  )} °C `;
   document.querySelector("#fullWeatherDescription").innerHTML = `${
     response.data.weather[0].main
   } <br /> Windspeed: ${Math.round(
@@ -61,10 +63,10 @@ function displayWeatherTimeConditions(response) {
 
   //Withdrawing Timezone info from Api and using it to refresh the time // Note simplified version, consider importing google api to maintain
   let timezone = response.data.timezone / 3600;
-  document.querySelector("#currentDate").innerHTML = formatDate(
+  document.querySelector("#currentDate").innerHTML = `${formatDate(
     new Date(),
     timezone
-  );
+  )} </br>`;
 
   //Extract the Co-ordinates of the city input from the API and use to call the 5 day forecast
   retrieveFiveDayForecastViaAPI(response.data.coord);

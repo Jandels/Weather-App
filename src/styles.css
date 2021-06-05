@@ -18,11 +18,6 @@ h3 {
   font-family: "Varela Round", sans-serif;
 }
 
-canvas {
-  border: 1px solid #000000;
-  border-radius: 10px;
-}
-
 dl {
   margin: 0;
   padding: 10px;
@@ -81,6 +76,7 @@ dt {
 .forecastTitle {
   margin: 2% 0 2% 0;
   text-align: center;
+  color: blue;
 }
 
 .fiveDayForecast {
@@ -123,7 +119,7 @@ dt {
   font-family: "Varela Round", sans-serif;
 }
 
-.container {
+.container-quote {
   padding: 30px 0;
 }
 
