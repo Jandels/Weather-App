@@ -4,6 +4,7 @@
 //4 Sort out the "Server would like to know your location": Maybe add in a user experience button? Or learn to automatically load something
 //6 Do final changes on CSS code to make the design look nice
 // If feeling confident - maybe add in a google API system for accurate time conversion
+//Fix up the quote of the day
 
 //////////////////////////////////////////////Change Temperature Metric, Celcius to Fahrenheight /////////////////////////////////////////////////////
 function metricTempChange() {
@@ -28,10 +29,11 @@ tempChange.addEventListener("click", metricTempChange);
 
 //Option 1 Open Automated on page loading via detect location
 function retrieveWeatherViaCoords(position) {
+  let units = "metric";
   let latitude = position.coords.latitude;
   let longditude = position.coords.longitude;
   let apiKey = "692e81252347f5426b1d20da827a7848";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longditude}&units=metric&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longditude}&units=${metric}&appid=${apiKey}`;
 
   axios.get(apiUrl).then(displayWeatherTimeConditions);
 }
